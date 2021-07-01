@@ -1,0 +1,14 @@
+
+    <section class="content" id="app">
+      <h1>Tutorial Requests</h1>
+      <ul class="request-list"> 
+        <li v-for="request in requests">
+          <span class="text">{{ request.text }}</span>
+          <div>
+            <span class="votes">{{ request.upvotes }}</span>
+            <i class="material-icons upvote" v-on:click="upvoteRequest(request.id)">arrow_upward</i>
+          </div>
+        </li>
+      </ul>
+      <button class="call" v-on:click="sayHello()">Say hello</button>
+    </section>

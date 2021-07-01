@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpack & TypeScript</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="notification"></div>
+
+    <!-- auth modals -->
+    <div class="auth">
+      <div class="modal active">
+        <h2>Login</h2>
+        <form class="login">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Login</button>
+          <p class="error"></p>
+        </form>
+        <div>No account? <a class="switch">Register instead</a></div>
+      </div>
+      <div class="modal">
+        <h2>Register</h2>
+        <form class="register">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Register</button>
+          <p class="error"></p>
+        </form>
+        <div>Got an account? <a class="switch">Login instead</a></div>
+      </div>
+    </div>
+
+    <!-- new request modal -->
+    <div class="new-request">
+      <div class="modal">
+        <h2>Request a Tutorial</h2>
+        <form>
+          <input type="text" name="request" placeholder="Request...">
+          <button>Submit Request</button>
+          <p class="error"></p>
+        </form>
+      </div>
+    </div>
+    
+    <header>
+      <nav>
+        <a class="add-request">add request</a>
+        <a class="sign-out">sign out</a>
+      </nav>
+    </header>
+
+    <section class="content" id="auth-pages">
+      <div id="audioContent">
+      </div>
+      <div class="page-study" style="display: none;">
+        <h2>Study</h2>
+        <div class="toolbarButtons">
+          <button>&lt;&lt;</button>
+          <button class="play">Play</button>
+          <button>&gt;&gt;</button>
+        </div>
+      </div>
+    </section>
+  <script src="bundle.js"></script>
+</body>
+</html>

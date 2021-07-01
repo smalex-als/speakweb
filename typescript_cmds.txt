@@ -1,0 +1,91 @@
+1. sudo npm install -g typescript
+
+2. mkdir -p ~/jsprojects/webpack-typescript
+
+3. [ smalex@micro(0.07) 1:18:51pm ] ~/jsprojects/webpack-typescript
+$ tsc --init
+message TS6071: Successfully created a tsconfig.json file.
+
+4. edit tsconfig.json
+    "target": "es6",                                /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', or 'ESNEXT'. */
+    "module": "es2015",                           /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+
+5. npm init
+
+create 
+package.json
+
+6. install dependencies
+
+npm install webpack webpack-cli ts-loader -D
+
+7. install typescript as dev dependency
+
+npm install typescript -D
+
+8. mkdir src & public
+
+mkdir src public
+
+9. create public/index.html
+
+https://github.com/iamshaunjp/webpack-and-typescript/blob/lesson-2/public/index.html
+
+10. create src/index.ts
+
+== lesson 3 ==
+
+11. create webpack.config.js
+
+https://github.com/iamshaunjp/webpack-and-typescript/blob/lesson-3/webpack.config.js
+
+12. add to package.json
+
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit
+  },
+
+13. compile code
+
+npm run build
+
+lesson 4
+
+14.  install dev server
+
+npm install webpack-dev-server -D
+
+15. add to package.json
+
+  "serve": "webpack serve --mode development --env development",
+
+
+16. add config for running dev server to  webpack.config.js
+  devServer : {
+    contentBase : 'public',
+    inline : false,
+    host: '0.0.0.0',//your ip address
+    port: 8080,
+    disableHostCheck: true,
+  },
+
+17. add script to index.html
+
+<script src="bundle.js"></script>
+
+lesson 5
+
+18. create src/forms.ts
+
+https://github.com/iamshaunjp/webpack-and-typescript/blob/lesson-5/src/forms.ts
+
+19. add resolving modules to webpack.config.js
+
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+
+lesson 6
+
+20. 
