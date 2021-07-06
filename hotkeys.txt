@@ -17,3 +17,7 @@ CMD + SHIFT + L - Select All Instances of a Word
 SHIFT + F6 - Rename Symbol
 CMD + CLICK - Jump to Function Definition
 CTRL + ` next Z - Zen Mode
+
+Commands:
+export GOOGLE_APPLICATION_CREDENTIALS=~/feeder-1366-8f17bac59d19.json
+firebase emulators:start

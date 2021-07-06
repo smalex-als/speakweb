@@ -1,5 +1,12 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import * as fs from "fs";
+import * as util from "util";
+import * as path from "path";
+import * as os from "os";
+import * as textToSpeech from "@google-cloud/text-to-speech";
+import AudioEncoding = textToSpeech.protos.
+        google.cloud.texttospeech.v1.AudioEncoding;
 
 admin.initializeApp();
 
@@ -94,4 +101,52 @@ export const upvote = functions.https.onCall(async (data, context) => {
   return request.update({
     upvotes: admin.firestore.FieldValue.increment(1),
   });
+});
+
+export const synthesizeText = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+        "unauthenticated",
+        "only authenticated users can vote up requests",
+    );
+  }
+  const text = data.text;
+  const hash = data.hash;
+  const name = data.name;
+
+  const basename = hash + ".mp3";
+  const fullname = "audio/" + basename;
+  const tempLocalFile = path.join(os.tmpdir(), basename);
+
+  const bucket = admin.storage().bucket(functions.config().storageBucket);
+  const [exists] = await bucket.file(fullname).exists();
+  if (!exists) {
+    console.log("not exists");
+    const client = new textToSpeech.TextToSpeechClient();
+    const request = {
+      input: {text: text},
+      voice: {languageCode: "en-US", name: name},
+      audioConfig: {audioEncoding: AudioEncoding.MP3},
+    };
+    const [response] = await client.synthesizeSpeech(request);
+    if (response == undefined) {
+      throw new functions.https.HttpsError("internal",
+          "remote server error");
+    }
+    const writeFile = util.promisify(fs.writeFile);
+    await writeFile(tempLocalFile, String(response.audioContent), "binary");
+    console.log("Audio content written to file");
+    const uploadResponse = await bucket.upload(tempLocalFile, {
+      destination: fullname,
+      public: true,
+    });
+    functions.logger.log("mp3 file uploaded to Storage at", uploadResponse);
+    fs.unlinkSync(tempLocalFile);
+
+    // const url = uploadResponse[1].mediaLink;
+    // functions.logger.log("mp3 file uploaded to Storage at", url);
+  } else {
+    console.log("exists " + fullname);
+  }
+  return bucket.file(fullname).publicUrl();
 });
