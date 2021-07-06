@@ -5,7 +5,8 @@ import * as util from "util";
 import * as path from "path";
 import * as os from "os";
 import * as textToSpeech from "@google-cloud/text-to-speech";
-import AudioEncoding = textToSpeech.protos.google.cloud.texttospeech.v1.AudioEncoding;
+import AudioEncoding = textToSpeech.protos.
+        google.cloud.texttospeech.v1.AudioEncoding;
 
 admin.initializeApp();
 
