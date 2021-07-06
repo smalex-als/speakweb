@@ -1,0 +1,19 @@
+CMD + 1 - Toggle Side Bar 
+SHIFT + ESC - Toggle Built-in Terminal
+CMD + , - Open User Settings
+CMD + SHIFT + O - Quick Open a File
+CTRL + TAB - Tab Through Open Files
+CMD + \ - Move File to Split Windows
+CMD + W - Close File
+CMD + F / CMD + R - /Replace in File 
+CMD + SHIFT + F - Global Search Replace
+CMD + SHIFT + P - Open Command Palette
+CMD + / - Toggle Comment a Line
+ALT + <-/-> - Navigating Text
+SHIFT + ALT + Up|Down - Duplicate Line
+CMD + ALT + SHIFT - Multiple Cursors
+CMD + D - Select Word
+CMD + SHIFT + L - Select All Instances of a Word
+SHIFT + F6 - Rename Symbol
+CMD + CLICK - Jump to Function Definition
+CTRL + ` next Z - Zen Mode
