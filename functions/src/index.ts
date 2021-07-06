@@ -38,7 +38,7 @@ export const addRequest = functions.https.onCall((data, context) => {
     throw new functions.https.HttpsError("invalid-argument",
         "request must be no more than 30 characters long");
   }
-  functions.logger.info("Hello from request function", {structuredData: true});
+  functions.logger.info("Hello from request function2", {structuredData: true});
   return admin.firestore().collection("requests").add({
     text: data.text,
     upvotes: 0,

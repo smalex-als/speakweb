@@ -18,3 +18,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SPEAK_95C35 }}'
           channelId: live
           projectId: speak-95c35
+          target: functions
