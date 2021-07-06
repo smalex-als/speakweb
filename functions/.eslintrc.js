@@ -1,10 +1,5 @@
 module.exports = {
-  "parserOptions": {
-    // Required for certain syntax usages
-    "ecmaVersion": 2017,
-  },
-  "root": true,
-  "env": {
+  root: true,
     es6: true,
     node: true,
   },
