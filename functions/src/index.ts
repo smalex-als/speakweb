@@ -135,7 +135,8 @@ export const synthesizeText = functions.https.onCall(async (data, context) => {
           "remote server error");
     }
     const writeFile = util.promisify(fs.writeFile);
-    await writeFile(tempLocalFile, String(response.audioContent), "binary");
+    const bytes = response.audioContent as Uint8Array;
+    await writeFile(tempLocalFile, bytes, "binary");
     console.log("Audio content written to file");
     const uploadResponse = await bucket.upload(tempLocalFile, {
       destination: fullname,
