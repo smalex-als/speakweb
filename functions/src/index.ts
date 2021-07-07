@@ -114,7 +114,6 @@ export const synthesizeText = functions.https.onCall(async (data, context) => {
   const text = data.text;
   const hash = data.hash;
   const name = data.name;
-
   const basename = hash + ".mp3";
   const fullname = "audio/" + basename;
   const tempLocalFile = path.join(os.tmpdir(), basename);

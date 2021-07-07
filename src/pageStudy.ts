@@ -6,6 +6,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 import Page from "./page";
 import firebase from "./config";
+import { Counter } from "./counter";
 
 import { dbWikiTextToHtml, isElementInViewport } from "./helpers";
 import { Node, Tree } from "./node";
@@ -17,7 +18,7 @@ var sourceEl: HTMLSourceElement;
 var cache = new Map<string, string>();
 var playContinuously = false;
 
-let onFirstMount = () => {
+let onFirstMount = async () => {
   audioEl = document.createElement("audio");
   sourceEl = document.createElement("source");
   audioEl.appendChild(sourceEl);
@@ -26,6 +27,11 @@ let onFirstMount = () => {
 
   var db = firebase.firestore();
   var docRef = db.collection("pages").doc("8kOeJ93vCQVlC01UBZ6Z");
+  const counter = new Counter(docRef, "counter");
+  counter.incrementBy(1);
+  const cnt = await counter.get();
+  console.log("counter:", cnt);
+
 
   docRef.get().then((doc) => {
     const content = page.pageEl;
